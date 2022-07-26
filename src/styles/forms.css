@@ -1,0 +1,21 @@
+.formContainer{
+    background-color: rgb(107 149 178 / 10%);
+    border-radius: 15px;
+    width: 50%;
+    margin: 5% auto;
+    padding: 100px 100px 100px 0;
+    border-top: 1px solid #45286b;
+    border-left: 1px solid #45286b;
+    border-right: 1px solid #da5b11;
+    border-bottom: 1px solid #da5b11;
+
+}
+
+.primaryBtn{
+    background-color: #45286b;
+    border-radius: 5px;
+}
+
+.primaryBtn:hover{
+    background-color: #5e4586;
+}
