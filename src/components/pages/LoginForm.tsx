@@ -4,6 +4,7 @@ import '../../styles/forms.css'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext';
 import { userInfo } from '../../constants/UserInfo'
+import { setVasUsername } from '../../utils/LocalStorageData';
 
 const LoginForm: React.FC = () => {
   const authContext = useContext(AuthContext)
@@ -13,6 +14,7 @@ const LoginForm: React.FC = () => {
     if (userInfo.username === values.username && userInfo.Password === values.password){
       authContext?.setIsLoggedIn(true)
       authContext?.setUsername(values.username)
+      setVasUsername(values.username)
       navigate('/')
     }
     else{

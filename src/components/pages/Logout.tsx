@@ -1,6 +1,7 @@
 import { AuthContext } from '../contexts/AuthContext';
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
+import { removeVasUsername } from '../../utils/LocalStorageData'
 
 export const Logout = () :any =>{
     const navigate = useNavigate()
@@ -9,6 +10,7 @@ export const Logout = () :any =>{
     const logoutUser = () :any => {
         authContext?.setIsLoggedIn(false)
         authContext?.setUsername('')
+        removeVasUsername()
         navigate('/')
     }
     return(
