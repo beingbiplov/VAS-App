@@ -1,20 +1,22 @@
 import { Button, Checkbox, Form, Input } from 'antd';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import '../../styles/forms.css'
 import { useNavigate } from 'react-router-dom'
-import { AuthContext } from '../contexts/AuthContext';
 import { userInfo } from '../../constants/UserInfo'
-import { setVasUsername } from '../../utils/LocalStorageData';
+import { setVasUsernameLS } from '../../utils/LocalStorageData';
+import { useDispatch, useSelector } from 'react-redux';
+import { setVasUsername } from '../../redux/UserInfoSlice';
+import { RootState } from '../../redux/store';
 
 const LoginForm: React.FC = () => {
-  const authContext = useContext(AuthContext)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const username = useSelector((state:RootState) => state.userInfo.username)
   
   const onFinish = (values: any) => {  
     if (userInfo.username === values.username && userInfo.Password === values.password){
-      authContext?.setIsLoggedIn(true)
-      authContext?.setUsername(values.username)
-      setVasUsername(values.username)
+      dispatch(setVasUsername(values.username))
+      setVasUsernameLS(values.username)
       navigate('/')
     }
     else{
@@ -28,7 +30,7 @@ const LoginForm: React.FC = () => {
   };
 
   useEffect(() =>{
-    if (authContext?.isLoggedIn){
+    if (username){
       navigate('/')  
     }
   })

@@ -1,18 +1,15 @@
 
-export const getVasUsername = (): any =>{
+export const getVasUsernameLS = (): any =>{
     const username = localStorage.getItem('vasUsername')
-    if (username){
-        return {username:username, isLoggedIn: true}
-    }
-    return {username:"", isLoggedIn: false}
+    return username
 }
 
-export const setVasUsername = (username:string): boolean =>{
+export const setVasUsernameLS = (username:string): boolean =>{
     localStorage.setItem('vasUsername', username)
     return true
 }
 
-export const removeVasUsername = (): boolean =>{
+export const removeVasUsernameLS = (): boolean =>{
     localStorage.removeItem('vasUsername')
     return true
 }
