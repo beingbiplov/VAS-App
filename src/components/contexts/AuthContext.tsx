@@ -1,5 +1,5 @@
 import { createContext, Dispatch, useState, SetStateAction, ReactNode  } from "react";
-import { getVasUsername } from '../../utils/LocalStorageData'
+import { getVasUsernameLS } from '../../utils/LocalStorageData'
 
 interface Auth{
     isLoggedIn: boolean;
@@ -15,7 +15,7 @@ type Props={
 }
 
 export const AuthProvider: React.FC<Props> =({children}) =>{
-    const storedUsername = getVasUsername()
+    const storedUsername = getVasUsernameLS()
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(storedUsername.isLoggedIn)
     const [username, setUsername] = useState<string>(storedUsername.username)

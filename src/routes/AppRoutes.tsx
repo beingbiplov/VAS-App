@@ -3,7 +3,6 @@ import LoginForm from '../components/pages/LoginForm';
 import IndexPage from '../components/IndexPage'
 import BaseLayout from '../components/BaseLayout'
 import PageNotFound from '../components/errorResponse/PageNotFound'
-import { AuthProvider } from '../components/contexts/AuthContext';
 
 function AppRoutes(){
     return(

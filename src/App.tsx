@@ -1,15 +1,15 @@
 import React from 'react';
 import './styles/app.css'
-import { BrowserRouter } from "react-router-dom";
 import AppRoutes from './routes/AppRoutes'
-import { AuthProvider } from './components/contexts/AuthContext';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
     <div>
-      <AuthProvider>
+      <Provider store={store}>
         < AppRoutes />
-      </AuthProvider>
+      </Provider>
     </div>
   );
 }

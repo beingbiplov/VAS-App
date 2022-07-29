@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { useContext } from 'react';
-import { AuthContext } from './contexts/AuthContext'
 import { Logout } from './pages/Logout'
+import { RootState } from '../redux/store';
+import { useSelector } from 'react-redux';
 
 function IndexPage() {
-  const authContext = useContext(AuthContext)
+  const username = useSelector((state:RootState) => state.userInfo.username)
 
-    if (authContext?.isLoggedIn){
+    if (username){
      return(
         <div>
           <p>
-            Welcome! <a>{authContext.username}</a>
+            Welcome! <a>{username}</a>
           </p>
           < Logout />
         </div>

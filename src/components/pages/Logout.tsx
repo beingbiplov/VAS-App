@@ -1,16 +1,16 @@
-import { AuthContext } from '../contexts/AuthContext';
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom'
-import { removeVasUsername } from '../../utils/LocalStorageData'
+import { setVasUsername } from '../../redux/UserInfoSlice';
+import { useDispatch } from 'react-redux';
+import { removeVasUsernameLS } from '../../utils/LocalStorageData'
 
 export const Logout = () :any =>{
     const navigate = useNavigate()
-    const authContext = useContext(AuthContext);
+    const dispatch = useDispatch()
 
     const logoutUser = () :any => {
-        authContext?.setIsLoggedIn(false)
-        authContext?.setUsername('')
-        removeVasUsername()
+        dispatch(setVasUsername(''))
+        removeVasUsernameLS()
         navigate('/')
     }
     return(
