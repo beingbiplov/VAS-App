@@ -1,17 +1,20 @@
-import { Button, Checkbox, Form, Input } from 'antd';
-import React, { useEffect } from 'react';
+import { Button, Checkbox, Form, Input, Typography } from 'antd';
 import '../../styles/forms.css'
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { userInfo } from '../../constants/UserInfo'
 import { setVasUsernameLS } from '../../utils/LocalStorageData';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setVasUsername } from '../../redux/UserInfoSlice';
-import { RootState } from '../../redux/store';
+import { GetLoggedInUser } from '../../utils/ReduxUserData';
+import { Link } from "react-router-dom";
+
+const { Title } = Typography;
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const username = useSelector((state:RootState) => state.userInfo.username)
+  const username = GetLoggedInUser()
   
   const onFinish = (values: any) => {  
     if (userInfo.username === values.username && userInfo.Password === values.password){
@@ -37,6 +40,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className='formContainer'>
+      <Title className='formContainerHeading' level={4}>Login</Title>
         <Form
         name="basic"
         labelCol={{ span: 8 }}
@@ -51,7 +55,7 @@ const LoginForm: React.FC = () => {
             name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
         >
-            <Input />
+            <Input placeholder='jondoe@email.com' />
         </Form.Item>
 
         <Form.Item
@@ -59,7 +63,7 @@ const LoginForm: React.FC = () => {
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
         >
-            <Input.Password />
+            <Input.Password placeholder='*********'/>
         </Form.Item>
 
         <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
@@ -70,6 +74,7 @@ const LoginForm: React.FC = () => {
             <Button className='primaryBtn' type="primary" htmlType="submit">
             Login
             </Button>
+            <Link to='/register'> Register</Link>
         </Form.Item>
         </Form>
     </div>
