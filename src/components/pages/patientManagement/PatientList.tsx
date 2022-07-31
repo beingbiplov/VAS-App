@@ -4,8 +4,8 @@ import type { ColumnsType, ColumnType } from 'antd/es/table';
 import type { FilterConfirmProps } from 'antd/es/table/interface';
 import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
-import { patientData } from '../../../constants/UserInfo';
 import { patientDataInterface } from '../../../redux/interface/patientDataInterface'
+import { getPatientDataLS } from '../../../utils/LocalStorageData';
 
 const { Title } = Typography;
 
@@ -16,7 +16,7 @@ const PatientList: React.FC = () =>{
 
   type DataIndex = keyof patientDataInterface
 
-  const data: patientDataInterface[] = patientData
+  const data: patientDataInterface[] | undefined = getPatientDataLS()
 
   const handleSearch = (
     selectedKeys: string[],
@@ -126,13 +126,13 @@ const PatientList: React.FC = () =>{
     dataIndex: 'address',
     key: 'address',
     filters: [
-      { text: 'Provience 1', value: 'Provience 1' },
-      { text: 'Provience 2', value: 'Provience 2' },
-      { text: 'Provience 3', value: 'Provience 3' },
-      { text: 'Provience 4', value: 'Provience 4' },
-      { text: 'Provience 5', value: 'Provience 5' },
-      { text: 'Provience 6', value: 'Provience 6' },
-      { text: 'Provience 7', value: 'Provience 7' },
+      { text: 'Provience 1', value: 'Provience1' },
+      { text: 'Provience 2', value: 'Provience2' },
+      { text: 'Provience 3', value: 'Provience3' },
+      { text: 'Provience 4', value: 'Provience4' },
+      { text: 'Provience 5', value: 'Provience5' },
+      { text: 'Provience 6', value: 'Provience6' },
+      { text: 'Provience 7', value: 'Provience7' },
     ],
     filterMode: 'tree',
     filterSearch: true,
@@ -180,7 +180,7 @@ const PatientList: React.FC = () =>{
   return(
       <section className='container TableContainer'>
           <Title className='formContainerHeading' level={4}>Patient List</Title>
-          <Table rowKey={record => record.email} columns={columns} dataSource={data} pagination={{ pageSize:2 }} />;
+          <Table rowKey={record => record.email} columns={columns} dataSource={data} pagination={{ pageSize:3 }} />;
       </section>
   )
 } 
