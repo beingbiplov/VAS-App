@@ -29,7 +29,7 @@ const ClientRegistrationConfirm: React.FC = () =>{
   })
 
     return (
-        <section className='formContainer userRegisterConfirmForm'>
+        <section className='container formContainer userRegisterConfirmForm'>
             <Title className='formContainerHeading' level={5}>Please Confirm the details below and confirm to register. </Title>
             < Divider />
             <Row>

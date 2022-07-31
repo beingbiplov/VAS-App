@@ -4,6 +4,7 @@ import IndexPage from '../components/IndexPage'
 import BaseLayout from '../components/BaseLayout'
 import ClientRegisterForm from '../components/pages/ClientRegisterForm'
 import ClientRegistrationConfirm from '../components/pages/ClientRegistrationConfirm'
+import PatientList from "../components/pages/patientManagement/PatientList";
 import PageNotFound from '../components/errorResponse/PageNotFound'
 
 function AppRoutes(){
@@ -15,6 +16,7 @@ function AppRoutes(){
             <Route path="login" element={<LoginForm />} />
             <Route path='register' element={<ClientRegisterForm />} />
             <Route path='confirm-registration' element={< ClientRegistrationConfirm />} />
+            <Route path='patient-list' element={< PatientList />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

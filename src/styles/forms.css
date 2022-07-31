@@ -1,14 +1,16 @@
-.formContainer{
+.container{
     background-color: rgb(107 149 178 / 10%);
-    border-radius: 15px;
-    width: 50%;
-    margin: 5% auto;
-    padding: 50px 100px 70px 0;
     border-top: 1px solid #45286b;
     border-left: 1px solid #45286b;
     border-right: 1px solid #da5b11;
     border-bottom: 1px solid #da5b11;
+    border-radius: 15px;
+}
 
+.formContainer{  
+    width: 50%;
+    margin: 5% auto;
+    padding: 50px 100px 70px 0;
 }
 
 .userRegisterForm{

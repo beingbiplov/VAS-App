@@ -100,7 +100,7 @@ const ClientRegisterForm: React.FC = () => {
   })
 
   return (
-    <div className='formContainer userRegisterForm'>
+    <div className='container formContainer userRegisterForm'>
         <Title className='formContainerHeading' level={4}>User Registration</Title>
     <Form
       {...formItemLayout}
