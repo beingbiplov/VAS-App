@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { GetLoggedInUser } from '../../utils/ReduxUserData';
 import { resetVasUserData } from '../../redux/PatientRegistrationSlice'
 import { useDispatch } from 'react-redux';
+import { storePatientDataLS } from '../../utils/LocalStorageData';
 
 const { Title, Text } = Typography;
 
@@ -16,7 +17,7 @@ const ClientRegistrationConfirm: React.FC = () =>{
     const dispatch = useDispatch()
     
     const handleConfirmation = () =>{
-        // add data to DB here 
+        storePatientDataLS(patientData)
         message.success(`Registration successful`);
         dispatch(resetVasUserData())
         navigate('/')
@@ -29,7 +30,7 @@ const ClientRegistrationConfirm: React.FC = () =>{
   })
 
     return (
-        <section className='formContainer userRegisterConfirmForm'>
+        <section className='container formContainer userRegisterConfirmForm'>
             <Title className='formContainerHeading' level={5}>Please Confirm the details below and confirm to register. </Title>
             < Divider />
             <Row>

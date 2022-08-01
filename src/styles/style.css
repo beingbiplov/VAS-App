@@ -1,3 +1,9 @@
 .pageHeadingH2{
     font-size: 2em;
 }
+
+.TableContainer {
+    width: 80%;
+    margin: 5% auto;
+    padding: 50px 10px 70px 10px;
+}

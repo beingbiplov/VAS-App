@@ -39,7 +39,7 @@ const LoginForm: React.FC = () => {
   })
 
   return (
-    <div className='formContainer'>
+    <div className='container formContainer'>
       <Title className='formContainerHeading' level={4}>Login</Title>
         <Form
         name="basic"

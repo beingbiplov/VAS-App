@@ -1,4 +1,4 @@
-export const userInfo ={
-    username: 'vyagutta@vyagutta.com',
-    Password : 'vyagutta'
-}
+export const userInfo = {
+  username: "vyagutta@vyagutta.com",
+  Password: "vyagutta",
+};
