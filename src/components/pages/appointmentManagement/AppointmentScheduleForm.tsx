@@ -57,9 +57,9 @@ const AppointmentScheduleForm: React.FC = () => {
         <Form.Item
         name="serviceType"
         label="Service Type"
-        rules={[{ required: true, message: 'Please select gender!' }]}
+        rules={[{ required: true, message: 'Please select a service type!' }]}
       >
-        <Select placeholder="select your gender">
+        <Select placeholder="select a service type">
           <Option value="Verocel">Verocel</Option>
           <Option value="Pfizer">Pfizer</Option>
           <Option value="AstraZeneca">AstraZeneca</Option>
