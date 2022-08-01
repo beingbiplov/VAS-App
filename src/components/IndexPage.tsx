@@ -12,10 +12,14 @@ function IndexPage() {
           <p>
             Welcome! <a>{username}</a>
           </p>
+          < Logout />   
           <p>
             <Link to="/patient-list">Patient List</Link>
-          </p>       
-          < Logout />      
+          </p>
+          <p>
+            <Link to="/schedule-appointment">Schedule Appointment</Link>
+          </p>        
+   
         </div>
       )
     }

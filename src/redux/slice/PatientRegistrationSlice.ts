@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { patientDataInterface } from "./interface/patientDataInterface";
+import { patientDataInterface } from "../interface/patientDataInterface";
 
 const initialState = (): patientDataInterface => {
   return {

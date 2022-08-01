@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { userInfo } from '../../constants/UserInfo'
 import { setVasUsernameLS } from '../../utils/LocalStorageData';
 import { useDispatch } from 'react-redux';
-import { setVasUsername } from '../../redux/UserInfoSlice';
+import { setVasUsername } from '../../redux/slice/UserInfoSlice';
 import { GetLoggedInUser } from '../../utils/ReduxUserData';
 import { Link } from "react-router-dom";
 

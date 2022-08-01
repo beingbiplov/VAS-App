@@ -1,12 +1,25 @@
-import { Button, Checkbox, Form, Input, Select, Typography } from 'antd';
+import { Button, Form, Input, Select, Typography } from 'antd';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setAppointmentData } from '../../../redux/slice/AppointmentScheduleSlice';
 
 const { Option } = Select;
 const { Title } = Typography;
 
 const AppointmentScheduleForm: React.FC = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const onFinish = (values: any) => {
-    console.log('Success:', values);
+    const appointmentData = {
+      patientId : values.patientId,
+      siteLocation : values.siteLocation,
+      serviceType : values.serviceType,
+      confirmationCode : values.confirmationCode
+    }
+    dispatch(setAppointmentData(appointmentData))
+    navigate('/appointment-confirmation')
   };
 
   const onFinishFailed = (errorInfo: any) => {

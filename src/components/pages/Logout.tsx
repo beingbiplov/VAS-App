@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
-import { setVasUsername } from '../../redux/UserInfoSlice';
+import { setVasUsername } from '../../redux/slice/UserInfoSlice';
 import { useDispatch } from 'react-redux';
 import { removeVasUsernameLS } from '../../utils/LocalStorageData'
 
@@ -14,8 +14,8 @@ export const Logout = () :any =>{
         navigate('/')
     }
     return(
-        <div>
+        <p>
             <a onClick={logoutUser} >Logout</a>
-        </div>
+        </p>
     )
 }
