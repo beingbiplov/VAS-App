@@ -5,6 +5,8 @@ import BaseLayout from '../components/BaseLayout'
 import ClientRegisterForm from '../components/pages/ClientRegisterForm'
 import ClientRegistrationConfirm from '../components/pages/ClientRegistrationConfirm'
 import PatientList from "../components/pages/patientManagement/PatientList";
+import AppointmentScheduleForm from "../components/pages/appointmentManagement/AppointmentScheduleForm";
+import AppointmentConfirmation from "../components/pages/appointmentManagement/AppointmentConfirmation";
 import PageNotFound from '../components/errorResponse/PageNotFound'
 
 function AppRoutes(){
@@ -17,6 +19,8 @@ function AppRoutes(){
             <Route path='register' element={<ClientRegisterForm />} />
             <Route path='confirm-registration' element={< ClientRegistrationConfirm />} />
             <Route path='patient-list' element={< PatientList />} />
+            <Route path='schedule-appointment' element={< AppointmentScheduleForm />} />
+            <Route path='appointment-confirmation' element={< AppointmentConfirmation />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

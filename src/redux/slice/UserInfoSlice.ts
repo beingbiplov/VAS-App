@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { getVasUsernameLS } from "../utils/LocalStorageData";
+import { getVasUsernameLS } from "../../utils/LocalStorageData";
 
 export interface userInfoState {
   username: string | undefined;

@@ -13,7 +13,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 import { useDispatch } from 'react-redux';
 import { GetRegisteredPatientData } from '../../utils/ReduxUserData';
-import { setVasUserData } from '../../redux/PatientRegistrationSlice';
+import { setVasUserData } from '../../redux/slice/PatientRegistrationSlice';
 import { useNavigate } from 'react-router-dom'
 import { stringToDate } from '../../utils/utils';
 import { GetLoggedInUser } from '../../utils/ReduxUserData';

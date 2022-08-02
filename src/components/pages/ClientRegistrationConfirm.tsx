@@ -4,7 +4,7 @@ import { GetRegisteredPatientData } from '../../utils/ReduxUserData';
 import { useNavigate, Link } from 'react-router-dom'
 import { useEffect } from 'react';
 import { GetLoggedInUser } from '../../utils/ReduxUserData';
-import { resetVasUserData } from '../../redux/PatientRegistrationSlice'
+import { resetVasUserData } from '../../redux/slice/PatientRegistrationSlice'
 import { useDispatch } from 'react-redux';
 import { storePatientDataLS } from '../../utils/LocalStorageData';
 
