@@ -4,6 +4,8 @@ import type { ColumnsType, ColumnType } from 'antd/es/table';
 import type { FilterConfirmProps } from 'antd/es/table/interface';
 import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
+import { Link } from 'react-router-dom';
+
 import { patientDataInterface } from '../../../redux/interface/patientDataInterface'
 import { getPatientDataLS } from '../../../utils/LocalStorageData';
 
@@ -170,7 +172,7 @@ const PatientList: React.FC = () =>{
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <a>Update</a>
+        <Link to={`/patient-upadate/${record.email}`}>Update</Link>
         <a>View Details</a>
       </Space>
     ),
