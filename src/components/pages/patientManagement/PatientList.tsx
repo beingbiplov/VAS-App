@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 import { patientDataInterface } from '../../../redux/interface/patientDataInterface'
 import { getPatientDataLS } from '../../../utils/LocalStorageData';
+import PatientDetails from './PatientDetails';
 
 const { Title } = Typography;
 
@@ -124,26 +125,6 @@ const PatientList: React.FC = () =>{
     ...getColumnSearchProps('email')
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-    filters: [
-      { text: 'Provience 1', value: 'Provience1' },
-      { text: 'Provience 2', value: 'Provience2' },
-      { text: 'Provience 3', value: 'Provience3' },
-      { text: 'Provience 4', value: 'Provience4' },
-      { text: 'Provience 5', value: 'Provience5' },
-      { text: 'Provience 6', value: 'Provience6' },
-      { text: 'Provience 7', value: 'Provience7' },
-    ],
-    filterMode: 'tree',
-    filterSearch: true,
-    onFilter: (value: any, record):any => record.address.provience.includes(value),
-    render: (text, record) => (
-      <span>{record.address.street}, {record.address.city}, {record.address.provience} </span>
-    )
-  },
-  {
     title: 'Gender',
     dataIndex: 'gender',
     key: 'gender',
@@ -172,8 +153,8 @@ const PatientList: React.FC = () =>{
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <Link to={`/patient-upadate/${record.email}`}>Update</Link>
-        <a>View Details</a>
+        < PatientDetails patientData={record} />
+        <Link className='textSecondary' to={`/patient-upadate/${record.email}`}>Update</Link> 
       </Space>
     ),
   },
