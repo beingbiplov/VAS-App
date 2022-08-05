@@ -7,3 +7,16 @@
     margin: 5% auto;
     padding: 50px 10px 70px 10px;
 }
+
+.textPrimary, .textPrimary:hover{
+    color: #5e4586;
+}
+
+.textSecondary, .textSecondary:hover{
+    color: #da5b11;
+}
+
+.secondaryOutlineBtn:hover {
+    color: #da5b11;
+    border-color: #da5b11;
+}
