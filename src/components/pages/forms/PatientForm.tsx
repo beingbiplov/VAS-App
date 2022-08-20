@@ -1,18 +1,7 @@
 import React from "react";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  Select,
-  DatePicker,
-  Upload,
-  message,
-} from "antd";
+import { Button, Form, Input, Select, DatePicker, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
-
-import { tailFormItemLayout } from "./formCommon";
 
 const { Option } = Select;
 
@@ -168,7 +157,7 @@ const PatientForm: React.FC = () => {
             <Input style={{ width: "33%" }} placeholder="Member ID" />
           </Form.Item>
           <Form.Item
-            name={["payment", "InsurenceProvider"]}
+            name={["payment", "insurenceProvider"]}
             noStyle
             rules={[
               { required: true, message: "Insurence provider is required" },
@@ -185,7 +174,7 @@ const PatientForm: React.FC = () => {
         tooltip="Identification document"
         rules={[
           {
-            required: true,
+            required: false,
             message: "Please input your identification document!",
           },
         ]}
@@ -198,24 +187,6 @@ const PatientForm: React.FC = () => {
         >
           <Button icon={<UploadOutlined />}>Click to Upload</Button>
         </Upload>
-      </Form.Item>
-
-      <Form.Item
-        name="agreement"
-        valuePropName="checked"
-        rules={[
-          {
-            validator: (_, value) =>
-              value
-                ? Promise.resolve()
-                : Promise.reject(new Error("Should accept agreement")),
-          },
-        ]}
-        {...tailFormItemLayout}
-      >
-        <Checkbox>
-          I have read the <a href="">agreement</a>
-        </Checkbox>
       </Form.Item>
     </React.Fragment>
   );

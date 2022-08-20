@@ -1,5 +1,4 @@
-import { Button, Form, Typography } from "antd";
-import { useEffect } from "react";
+import { Button, Form, Typography, Checkbox } from "antd";
 import { useDispatch } from "react-redux";
 
 import PatientForm from "./forms/PatientForm";
@@ -33,7 +32,7 @@ const ClientRegisterForm: React.FC = () => {
       payment: {
         insurenceId: values.payment.insurenceId,
         memberId: values.payment.memberId,
-        insurenceProvider: values.payment.InsurenceProvider,
+        insurenceProvider: values.payment.insurenceProvider,
       },
       document: values.document,
     };
@@ -73,6 +72,23 @@ const ClientRegisterForm: React.FC = () => {
         scrollToFirstError
       >
         <PatientForm />
+        <Form.Item
+          name="agreement"
+          valuePropName="checked"
+          rules={[
+            {
+              validator: (_, value) =>
+                value
+                  ? Promise.resolve()
+                  : Promise.reject(new Error("Should accept agreement")),
+            },
+          ]}
+          {...tailFormItemLayout}
+        >
+          <Checkbox>
+            I have read the <a href="">agreement</a>
+          </Checkbox>
+        </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button className="primaryBtn" type="primary" htmlType="submit">
             Next
