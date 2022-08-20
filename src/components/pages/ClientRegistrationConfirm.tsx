@@ -3,7 +3,6 @@ import { Typography, Divider, Col, Row, Button, message } from "antd";
 import { GetRegisteredPatientData } from "../../utils/ReduxUserData";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
-import { UserIsAuthenticated } from "../../utils/ReduxUserData";
 import { resetVasUserData } from "../../redux/slice/PatientRegistrationSlice";
 import { useDispatch } from "react-redux";
 import { storePatientDataLS } from "../../utils/LocalStorageData";
@@ -14,7 +13,6 @@ const ClientRegistrationConfirm: React.FC = () => {
   const patientData = GetRegisteredPatientData();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userLoggedIn = UserIsAuthenticated();
 
   const handleConfirmation = () => {
     storePatientDataLS(patientData);
@@ -24,7 +22,7 @@ const ClientRegistrationConfirm: React.FC = () => {
   };
 
   useEffect(() => {
-    if (userLoggedIn || !patientData.email) {
+    if (!patientData.email) {
       navigate("/");
     }
   });

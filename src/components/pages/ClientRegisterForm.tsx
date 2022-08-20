@@ -7,7 +7,6 @@ import { GetRegisteredPatientData } from "../../utils/ReduxUserData";
 import { setVasUserData } from "../../redux/slice/PatientRegistrationSlice";
 import { useNavigate } from "react-router-dom";
 import { stringToDate } from "../../utils/utils";
-import { UserIsAuthenticated } from "../../utils/ReduxUserData";
 import { formItemLayout, tailFormItemLayout } from "./forms/formCommon";
 
 const { Title } = Typography;
@@ -16,7 +15,6 @@ const ClientRegisterForm: React.FC = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userLoggedIn = UserIsAuthenticated();
   const patientData = GetRegisteredPatientData();
 
   const onFinish = (values: any) => {
@@ -43,12 +41,6 @@ const ClientRegisterForm: React.FC = () => {
     dispatch(setVasUserData(patientData));
     navigate("/confirm-registration");
   };
-
-  useEffect(() => {
-    if (userLoggedIn) {
-      navigate("/");
-    }
-  });
 
   return (
     <div className="container formContainer userRegisterForm">

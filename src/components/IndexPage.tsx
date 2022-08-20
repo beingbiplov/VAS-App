@@ -5,14 +5,15 @@ import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 
 function IndexPage() {
-  const username = useSelector(
+  const isLoggedIn = useSelector(
     (state: RootState) => state.userInfo.isAuthenticated
   );
-  if (username) {
+  const email = useSelector((state: RootState) => state.userInfo.email);
+  if (isLoggedIn) {
     return (
       <div>
         <p>
-          Welcome! <a>{username}</a>
+          Welcome! <a>{email}</a>
         </p>
         <Logout />
         <p>

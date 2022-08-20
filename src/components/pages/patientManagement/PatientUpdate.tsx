@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import PatientForm from "../forms/PatientForm";
 import { patientMockData } from "../../../constants/UserInfo";
-import { UserIsAuthenticated } from "../../../utils/ReduxUserData";
 import { formItemLayout, tailFormItemLayout } from "../forms/formCommon";
 
 const { Title } = Typography;
@@ -12,7 +11,6 @@ const { Title } = Typography;
 const PatientUpdate: React.FC = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const userLoggedIn = UserIsAuthenticated();
 
   let { id } = useParams();
 
@@ -21,12 +19,6 @@ const PatientUpdate: React.FC = () => {
     message.success(`Patient data updated successfully.`);
     navigate("/patient-list");
   };
-
-  useEffect(() => {
-    if (!userLoggedIn) {
-      navigate("/");
-    }
-  });
 
   return (
     <div className="container formContainer userRegisterForm">
