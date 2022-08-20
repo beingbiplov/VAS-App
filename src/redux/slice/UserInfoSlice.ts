@@ -1,30 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { getVasUsernameLS } from "../../utils/LocalStorageData";
 
-export interface userInfoState {
-  username: string | undefined;
-}
+import { getUserDataFromCookie } from "../../cookie/authCookie";
+import UserInterface from "../interface/userInterface";
 
-const initialState = (): userInfoState => {
-  let usernameLS = getVasUsernameLS();
-  if (usernameLS) {
-    return { username: usernameLS };
-  } else {
-    return { username: "" };
-  }
+const initialState = (): UserInterface => {
+  return getUserDataFromCookie();
 };
 
 export const userInfoSlice = createSlice({
   name: "userInfo",
   initialState: initialState(),
   reducers: {
-    setVasUsername: (state, action: PayloadAction<string>) => {
-      state.username = action.payload;
+    setUserData: (state, action: PayloadAction<UserInterface>) => {
+      state.email = action.payload.email;
+      state.id = action.payload.id;
+      state.isAdmin = action.payload.isAdmin;
+      state.isAuthenticated = action.payload.isAuthenticated;
     },
   },
 });
 
-export const { setVasUsername } = userInfoSlice.actions;
+export const { setUserData } = userInfoSlice.actions;
 
 export default userInfoSlice.reducer;

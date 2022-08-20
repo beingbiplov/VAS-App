@@ -9,7 +9,6 @@ export const GetRegisteredPatientData = (): patientDataInterface => {
   return userData;
 };
 
-export const GetLoggedInUser = (): string | undefined => {
-  const username = useSelector((state: RootState) => state.userInfo.username);
-  return username;
+export const UserIsAuthenticated = (): boolean | undefined => {
+  return useSelector((state: RootState) => state.userInfo.isAuthenticated);
 };
