@@ -7,7 +7,7 @@ const initialState = (): patientDataInterface => {
     firstName: "",
     lastname: "",
     email: "",
-    DOB: "",
+    date_of_birth: "",
     gender: "",
     ethnicity: "",
     address: {

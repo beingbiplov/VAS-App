@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   Checkbox,
@@ -8,24 +8,24 @@ import {
   DatePicker,
   Upload,
   message,
-} from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
-import type { UploadProps } from 'antd';
+} from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import type { UploadProps } from "antd";
 
-import { tailFormItemLayout } from './formCommon';
+import { tailFormItemLayout } from "./formCommon";
 
 const { Option } = Select;
 
 const props: UploadProps = {
-  name: 'file',
-  action: 'https://run.mocky.io/v3/41d85baa-499a-4766-9f25-d8b1721a75c2',
+  name: "file",
+  action: "https://run.mocky.io/v3/41d85baa-499a-4766-9f25-d8b1721a75c2",
   headers: {
-    authorization: 'authorization-text',
+    authorization: "authorization-text",
   },
   onChange(info) {
-    if (info.fileList.length > 0 && info.file.status === 'done') {
+    if (info.fileList.length > 0 && info.file.status === "done") {
       message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
+    } else if (info.file.status === "error") {
       message.error(`${info.file.name} file upload failed.`);
     }
   },
@@ -38,43 +38,60 @@ const PatientForm: React.FC = () => {
         name="firstName"
         label="First Name"
         tooltip="What is your first name?"
-        rules={[{ required: true, message: 'Please input your firstName!', whitespace: true }]}
+        rules={[
+          {
+            required: true,
+            message: "Please input your firstName!",
+            whitespace: true,
+          },
+        ]}
       >
-        <Input placeholder='Jon' />
+        <Input placeholder="Jon" />
       </Form.Item>
 
       <Form.Item
         name="lastname"
         label="Last Name"
         tooltip="What is your last name?"
-        rules={[{ required: true, message: 'Please input your lastname!', whitespace: true }]}
+        rules={[
+          {
+            required: true,
+            message: "Please input your lastname!",
+            whitespace: true,
+          },
+        ]}
       >
-        <Input placeholder='Doe' />
+        <Input placeholder="Doe" />
       </Form.Item>
 
       <Form.Item
-        name="DOB"
+        name="date_of_birth"
         label="Date of birth"
         tooltip="What is your date of birth?"
-        rules={[{ required: true, message: 'Please input your birth date!' }]}
+        rules={[{ required: true, message: "Please input your birth date!" }]}
       >
         <DatePicker />
-
       </Form.Item>
 
       <Form.Item
         name="ethnicity"
         label="Ethnicity"
         tooltip="What is your ethnicity?"
-        rules={[{ required: true, message: 'Please input your ethnicity!', whitespace: true }]}
+        rules={[
+          {
+            required: true,
+            message: "Please input your ethnicity!",
+            whitespace: true,
+          },
+        ]}
       >
-        <Input placeholder='ethnicity' />
+        <Input placeholder="ethnicity" />
       </Form.Item>
 
       <Form.Item
         name="gender"
         label="Gender"
-        rules={[{ required: true, message: 'Please select gender!' }]}
+        rules={[{ required: true, message: "Please select gender!" }]}
       >
         <Select placeholder="select your gender">
           <Option value="male">Male</Option>
@@ -88,26 +105,24 @@ const PatientForm: React.FC = () => {
         label="E-mail"
         rules={[
           {
-            type: 'email',
-            message: 'The input is not valid E-mail!',
+            type: "email",
+            message: "The input is not valid E-mail!",
           },
           {
             required: true,
-            message: 'Please input your E-mail!',
+            message: "Please input your E-mail!",
           },
         ]}
       >
-        <Input placeholder='jondoe@email.com' />
+        <Input placeholder="jondoe@email.com" />
       </Form.Item>
 
-      <Form.Item
-        label="Address"
-      >
+      <Form.Item label="Address">
         <Input.Group compact>
           <Form.Item
-            name={['address', 'provience']}
+            name={["address", "provience"]}
             noStyle
-            rules={[{ required: true, message: 'provience is required' }]}
+            rules={[{ required: true, message: "provience is required" }]}
           >
             <Select placeholder="Select provience">
               <Option value="Provience1">Provience 1</Option>
@@ -120,47 +135,46 @@ const PatientForm: React.FC = () => {
             </Select>
           </Form.Item>
           <Form.Item
-            name={['address', 'city']}
+            name={["address", "city"]}
             noStyle
-            rules={[{ required: true, message: 'City is required' }]}
+            rules={[{ required: true, message: "City is required" }]}
           >
-            <Input style={{ width: '25%' }} placeholder="Input City" />
+            <Input style={{ width: "25%" }} placeholder="Input City" />
           </Form.Item>
           <Form.Item
-            name={['address', 'street']}
+            name={["address", "street"]}
             noStyle
-            rules={[{ required: true, message: 'Street is required' }]}
+            rules={[{ required: true, message: "Street is required" }]}
           >
-            <Input style={{ width: '25%' }} placeholder="Input street" />
+            <Input style={{ width: "25%" }} placeholder="Input street" />
           </Form.Item>
         </Input.Group>
       </Form.Item>
 
-      <Form.Item
-        label="Payment Information"
-      >
+      <Form.Item label="Payment Information">
         <Input.Group compact>
           <Form.Item
-            name={['payment', 'insurenceId']}
+            name={["payment", "insurenceId"]}
             noStyle
-            rules={[{ required: true, message: 'Insurence id is required' }]}
+            rules={[{ required: true, message: "Insurence id is required" }]}
           >
-            <Input style={{ width: '33%' }} placeholder="Insurence ID" />
-
+            <Input style={{ width: "33%" }} placeholder="Insurence ID" />
           </Form.Item>
           <Form.Item
-            name={['payment', 'memberId']}
+            name={["payment", "memberId"]}
             noStyle
-            rules={[{ required: true, message: 'Member ID is required' }]}
+            rules={[{ required: true, message: "Member ID is required" }]}
           >
-            <Input style={{ width: '33%' }} placeholder="Member ID" />
+            <Input style={{ width: "33%" }} placeholder="Member ID" />
           </Form.Item>
           <Form.Item
-            name={['payment', 'InsurenceProvider']}
+            name={["payment", "InsurenceProvider"]}
             noStyle
-            rules={[{ required: true, message: 'Insurence provider is required' }]}
+            rules={[
+              { required: true, message: "Insurence provider is required" },
+            ]}
           >
-            <Input style={{ width: '34%' }} placeholder="Insurence provider." />
+            <Input style={{ width: "34%" }} placeholder="Insurence provider." />
           </Form.Item>
         </Input.Group>
       </Form.Item>
@@ -169,9 +183,19 @@ const PatientForm: React.FC = () => {
         name="document"
         label="Document"
         tooltip="Identification document"
-        rules={[{ required: true, message: 'Please input your identification document!' }]}
+        rules={[
+          {
+            required: true,
+            message: "Please input your identification document!",
+          },
+        ]}
       >
-        <Upload {...props} listType='picture' maxCount={1} accept='.jpeg, .jpg, .png'>
+        <Upload
+          {...props}
+          listType="picture"
+          maxCount={1}
+          accept=".jpeg, .jpg, .png"
+        >
           <Button icon={<UploadOutlined />}>Click to Upload</Button>
         </Upload>
       </Form.Item>
@@ -182,7 +206,9 @@ const PatientForm: React.FC = () => {
         rules={[
           {
             validator: (_, value) =>
-              value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
+              value
+                ? Promise.resolve()
+                : Promise.reject(new Error("Should accept agreement")),
           },
         ]}
         {...tailFormItemLayout}
@@ -192,7 +218,6 @@ const PatientForm: React.FC = () => {
         </Checkbox>
       </Form.Item>
     </React.Fragment>
-
   );
 };
 

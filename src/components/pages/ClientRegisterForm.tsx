@@ -22,7 +22,7 @@ const ClientRegisterForm: React.FC = () => {
       firstName: values.firstName,
       lastname: values.lastname,
       email: values.email,
-      DOB: values.DOB.format("YYYY-MM-DD").toString(),
+      date_of_birth: values.date_of_birth.format("YYYY-MM-DD").toString(),
       gender: values.gender,
       ethnicity: values.ethnicity,
       address: {
@@ -37,7 +37,6 @@ const ClientRegisterForm: React.FC = () => {
       },
       document: values.document,
     };
-
     dispatch(setVasUserData(patientData));
     navigate("/confirm-registration");
   };
@@ -56,7 +55,7 @@ const ClientRegisterForm: React.FC = () => {
           firstName: patientData.firstName,
           lastname: patientData.lastname,
           email: patientData.email,
-          DOB: stringToDate(patientData.DOB),
+          date_of_birth: stringToDate(patientData.date_of_birth),
           gender: patientData.gender,
           ethnicity: patientData.ethnicity,
           address: {

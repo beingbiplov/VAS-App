@@ -161,7 +161,7 @@ const PatientList: React.FC = () => {
       dataIndex: "DOB",
       key: "DOB",
       sorter: (a: patientDataInterface, b: patientDataInterface): number =>
-        a.DOB.localeCompare(b.DOB),
+        a.date_of_birth.localeCompare(b.date_of_birth),
     },
     {
       title: "Action",

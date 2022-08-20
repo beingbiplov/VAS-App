@@ -56,7 +56,7 @@ const PatientDetails: React.FC<{ patientData: patientDataInterface }> = ({
             {patientData.ethnicity}
           </Descriptions.Item>
           <Descriptions.Item label="DOB" span={2}>
-            {patientData.DOB}
+            {patientData.date_of_birth}
           </Descriptions.Item>
           <Descriptions.Item label="Street">
             {patientData.address.street}

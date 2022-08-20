@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, Divider, Col, Row, Button, message } from "antd";
+
 import { GetRegisteredPatientData } from "../../utils/ReduxUserData";
 import { useNavigate, Link } from "react-router-dom";
-import { useEffect } from "react";
 import { resetVasUserData } from "../../redux/slice/PatientRegistrationSlice";
 import { useDispatch } from "react-redux";
-import { storePatientDataLS } from "../../utils/LocalStorageData";
+import { registerPatient } from "../../services/patientService";
 
 const { Title, Text } = Typography;
 
@@ -14,8 +14,8 @@ const ClientRegistrationConfirm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleConfirmation = () => {
-    storePatientDataLS(patientData);
+  const handleConfirmation = async () => {
+    await registerPatient(patientData);
     message.success(`Registration successful`);
     dispatch(resetVasUserData());
     navigate("/");
@@ -56,7 +56,7 @@ const ClientRegistrationConfirm: React.FC = () => {
           <Title level={5}>
             DOB:{" "}
             <Text type="secondary" italic>
-              {patientData.DOB}
+              {patientData.date_of_birth}
             </Text>
           </Title>
           <Title level={5}>

@@ -14,7 +14,7 @@ export interface patientDataInterface {
   firstName: string;
   lastname: string;
   email: string;
-  DOB: string;
+  date_of_birth: string;
   gender: string;
   ethnicity: string;
   address: addressInterface;
