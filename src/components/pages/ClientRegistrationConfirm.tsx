@@ -15,10 +15,25 @@ const ClientRegistrationConfirm: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleConfirmation = async () => {
-    await registerPatient(patientData);
-    message.success(`Registration successful`);
-    dispatch(resetVasUserData());
-    navigate("/");
+    await registerPatient(patientData)
+      .then(() => {
+        message.success("User registered successfully.", 5);
+        dispatch(resetVasUserData());
+        navigate("/");
+      })
+      .catch((err) => {
+        const errMsg =
+          err.response.status === 409
+            ? err.response.data.message
+            : "unexpected error occurred. Please try agin later!";
+        message.error({
+          content: errMsg,
+          style: {
+            marginTop: "8%",
+          },
+          duration: 5,
+        });
+      });
   };
 
   useEffect(() => {

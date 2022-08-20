@@ -1,6 +1,11 @@
 import { getAccessTokenFromCookie } from "../cookie/authCookie";
 
-import { postRequest, getRequest, putRequest } from "./serverCall";
+import {
+  postRequest,
+  getRequest,
+  putRequest,
+  deleteRequest,
+} from "./serverCall";
 
 export const registerPatient = async (data: any) => {
   const res = await postRequest("/patient", data).catch((err) => {
@@ -31,7 +36,17 @@ export const getPatient = async (id: number) => {
 };
 
 export const updatePatient = async (id: number, data: any) => {
-  const res = await putRequest(`/patient/${id}`, data).catch((err) => {
+  const token = getAccessTokenFromCookie();
+  const res = await putRequest(`/patient/${id}`, data, token).catch((err) => {
+    throw err;
+  });
+
+  return res;
+};
+
+export const deletePatient = async (id: number) => {
+  const token = getAccessTokenFromCookie();
+  const res = await deleteRequest(`/patient/${id}`, token).catch((err) => {
     throw err;
   });
 

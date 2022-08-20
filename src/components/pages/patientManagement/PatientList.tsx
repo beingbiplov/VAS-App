@@ -1,4 +1,12 @@
-import { Button, Input, Space, Table, Typography, InputRef } from "antd";
+import {
+  Button,
+  Input,
+  Space,
+  Table,
+  Typography,
+  InputRef,
+  message,
+} from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import type { ColumnsType, ColumnType } from "antd/es/table";
 import type { FilterConfirmProps } from "antd/es/table/interface";
@@ -8,7 +16,7 @@ import { Link } from "react-router-dom";
 
 import { patientListInterface } from "../../../redux/interface/patientDataInterface";
 import PatientDetails from "./PatientDetails";
-import { getPatients } from "../../../services/patientService";
+import { deletePatient, getPatients } from "../../../services/patientService";
 import { verifyToken } from "../../../services/userService";
 
 const { Title } = Typography;
@@ -17,6 +25,7 @@ const PatientList: React.FC = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const [data, setData] = useState();
+  const [reload, setReload] = useState<boolean>(false);
   const searchInput = useRef<InputRef>(null);
 
   type DataIndex = keyof patientListInterface;
@@ -28,9 +37,21 @@ const PatientList: React.FC = () => {
       });
     });
   };
+
+  const handleDelete = async (id: number) => {
+    await deletePatient(id)
+      .then(() => {
+        setReload((current) => !current);
+        message.success("User deleted successfully");
+      })
+      .catch((err) => {
+        message.error("some error occurred. Please try again later!");
+      });
+  };
+
   useEffect(() => {
     getPatientData();
-  }, []);
+  }, [reload]);
 
   const handleSearch = (
     selectedKeys: string[],
@@ -176,6 +197,9 @@ const PatientList: React.FC = () => {
           <Link className="textSecondary" to={`/patient-update/${record.id}`}>
             Update
           </Link>
+          <Button className="deleteBtn" onClick={() => handleDelete(record.id)}>
+            Delete
+          </Button>
         </Space>
       ),
     },
