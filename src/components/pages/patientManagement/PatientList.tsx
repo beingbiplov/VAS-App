@@ -2,24 +2,35 @@ import { Button, Input, Space, Table, Typography, InputRef } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import type { ColumnsType, ColumnType } from "antd/es/table";
 import type { FilterConfirmProps } from "antd/es/table/interface";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Highlighter from "react-highlight-words";
 import { Link } from "react-router-dom";
 
-import { patientDataInterface } from "../../../redux/interface/patientDataInterface";
-import { getPatientDataLS } from "../../../utils/LocalStorageData";
+import { patientListInterface } from "../../../redux/interface/patientDataInterface";
 import PatientDetails from "./PatientDetails";
+import { getPatients } from "../../../services/patientService";
+import { verifyToken } from "../../../services/userService";
 
 const { Title } = Typography;
 
 const PatientList: React.FC = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
+  const [data, setData] = useState();
   const searchInput = useRef<InputRef>(null);
 
-  type DataIndex = keyof patientDataInterface;
+  type DataIndex = keyof patientListInterface;
 
-  const data: patientDataInterface[] | undefined = getPatientDataLS();
+  const getPatientData = async () => {
+    await verifyToken().then(async () => {
+      await getPatients().then((data) => {
+        setData(data.data.data);
+      });
+    });
+  };
+  useEffect(() => {
+    getPatientData();
+  }, []);
 
   const handleSearch = (
     selectedKeys: string[],
@@ -38,7 +49,7 @@ const PatientList: React.FC = () => {
 
   const getColumnSearchProps = (
     dataIndex: DataIndex
-  ): ColumnType<patientDataInterface> => ({
+  ): ColumnType<patientListInterface> => ({
     filterDropdown: ({
       setSelectedKeys,
       selectedKeys,
@@ -117,17 +128,17 @@ const PatientList: React.FC = () => {
       ),
   });
 
-  const columns: ColumnsType<patientDataInterface> = [
+  const columns: ColumnsType<patientListInterface> = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      sorter: (a: patientDataInterface, b: patientDataInterface): number =>
-        a.firstName.localeCompare(b.firstName),
-      ...getColumnSearchProps("firstName"),
+      sorter: (a: patientListInterface, b: patientListInterface): number =>
+        a.first_name.localeCompare(b.first_name),
+      ...getColumnSearchProps("first_name"),
       render: (text, record) => (
         <span>
-          {record.firstName} {record.lastname}{" "}
+          {record.first_name} {record.last_name}{" "}
         </span>
       ),
     },
@@ -135,7 +146,7 @@ const PatientList: React.FC = () => {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      sorter: (a: patientDataInterface, b: patientDataInterface): number =>
+      sorter: (a: patientListInterface, b: patientListInterface): number =>
         a.email.localeCompare(b.email),
       ...getColumnSearchProps("email"),
     },
@@ -157,22 +168,12 @@ const PatientList: React.FC = () => {
       key: "ethnicity",
     },
     {
-      title: "DOB",
-      dataIndex: "DOB",
-      key: "DOB",
-      sorter: (a: patientDataInterface, b: patientDataInterface): number =>
-        a.date_of_birth.localeCompare(b.date_of_birth),
-    },
-    {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <Space size="middle">
           <PatientDetails patientData={record} />
-          <Link
-            className="textSecondary"
-            to={`/patient-update/${record.email}`}
-          >
+          <Link className="textSecondary" to={`/patient-update/${record.id}`}>
             Update
           </Link>
         </Space>

@@ -2,9 +2,9 @@ import { Modal, Button, Descriptions } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { patientDataInterface } from "../../../redux/interface/patientDataInterface";
+import { patientListInterface } from "../../../redux/interface/patientDataInterface";
 
-const PatientDetails: React.FC<{ patientData: patientDataInterface }> = ({
+const PatientDetails: React.FC<{ patientData: patientListInterface }> = ({
   patientData,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,7 +27,7 @@ const PatientDetails: React.FC<{ patientData: patientDataInterface }> = ({
         footer={[
           <Button
             className="secondaryOutlineBtn"
-            href={`/patient-update/${patientData.email}`}
+            href={`/patient-update/${patientData.id}`}
             key="update"
           >
             Update Patient
@@ -44,10 +44,10 @@ const PatientDetails: React.FC<{ patientData: patientDataInterface }> = ({
       >
         <Descriptions bordered>
           <Descriptions.Item label="First Name">
-            {patientData.firstName}
+            {patientData.first_name}
           </Descriptions.Item>
           <Descriptions.Item label="Last Name">
-            {patientData.lastname}
+            {patientData.last_name}
           </Descriptions.Item>
           <Descriptions.Item label="Gender">
             {patientData.gender}

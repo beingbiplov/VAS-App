@@ -21,3 +21,16 @@ export interface patientDataInterface {
   payment: paymentInterface;
   document: File;
 }
+
+export interface patientListInterface {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  date_of_birth: string;
+  gender: string;
+  ethnicity: string;
+  address: addressInterface;
+  payment: paymentInterface;
+  document: File;
+}
