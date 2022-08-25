@@ -1,21 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'
-import { setVasUsername } from '../../redux/slice/UserInfoSlice';
-import { useDispatch } from 'react-redux';
-import { removeVasUsernameLS } from '../../utils/LocalStorageData'
+import React from "react";
 
-export const Logout = () :any =>{
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
+import { logoutUser } from "../../services/userService";
 
-    const logoutUser = () :any => {
-        dispatch(setVasUsername(''))
-        removeVasUsernameLS()
-        navigate('/')
-    }
-    return(
-        <p>
-            <a onClick={logoutUser} >Logout</a>
-        </p>
-    )
-}
+export const Logout = (): any => {
+  const logout = (): any => {
+    logoutUser();
+  };
+  return (
+    <p>
+      <a onClick={logout}>Logout</a>
+    </p>
+  );
+};

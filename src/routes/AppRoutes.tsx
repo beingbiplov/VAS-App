@@ -10,6 +10,7 @@ import AppointmentConfirmation from "../components/pages/appointmentManagement/A
 import PatientUpdate from "../components/pages/patientManagement/PatientUpdate";
 import VaccinationCreate from "../components/pages/vaccinationManagement/VaccinationCreate";
 import PageNotFound from "../components/errorResponse/PageNotFound";
+import AdminProtectedRoutes from "../components/protectedRoutes/adminProtectedRotes";
 
 function AppRoutes() {
   return (
@@ -23,17 +24,19 @@ function AppRoutes() {
             path="confirm-registration"
             element={<ClientRegistrationConfirm />}
           />
-          <Route path="patient-list" element={<PatientList />} />
-          <Route path="patient-update/:id" element={<PatientUpdate />} />
-          <Route
-            path="schedule-appointment"
-            element={<AppointmentScheduleForm />}
-          />
           <Route
             path="appointment-confirmation"
             element={<AppointmentConfirmation />}
           />
-          <Route path="vaccination/add" element={<VaccinationCreate />} />
+          <Route
+            path="schedule-appointment"
+            element={<AppointmentScheduleForm />}
+          />
+          <Route element={<AdminProtectedRoutes />}>
+            <Route path="patient-list" element={<PatientList />} />
+            <Route path="patient-update/:id" element={<PatientUpdate />} />
+            <Route path="vaccination/add" element={<VaccinationCreate />} />
+          </Route>
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>

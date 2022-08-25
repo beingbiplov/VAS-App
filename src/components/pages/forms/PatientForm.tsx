@@ -22,7 +22,7 @@ const props: UploadProps = {
   headers: {
     authorization: 'authorization-text',
   },
-  onChange(info) {   
+  onChange(info) {
     if (info.fileList.length > 0 && info.file.status === 'done') {
       message.success(`${info.file.name} file uploaded successfully`);
     } else if (info.file.status === 'error') {
@@ -34,44 +34,44 @@ const props: UploadProps = {
 const PatientForm: React.FC = () => {
   return (
     <React.Fragment>
-    <Form.Item
+      <Form.Item
         name="firstName"
         label="First Name"
         tooltip="What is your first name?"
         rules={[{ required: true, message: 'Please input your firstName!', whitespace: true }]}
       >
         <Input placeholder='Jon' />
-    </Form.Item>
+      </Form.Item>
 
-    <Form.Item
+      <Form.Item
         name="lastname"
         label="Last Name"
         tooltip="What is your last name?"
         rules={[{ required: true, message: 'Please input your lastname!', whitespace: true }]}
       >
         <Input placeholder='Doe' />
-    </Form.Item>
+      </Form.Item>
 
-    <Form.Item
+      <Form.Item
         name="DOB"
-        label = "Date of birth"
+        label="Date of birth"
         tooltip="What is your date of birth?"
         rules={[{ required: true, message: 'Please input your birth date!' }]}
-    >
+      >
         <DatePicker />
 
-    </Form.Item>
+      </Form.Item>
 
-    <Form.Item
+      <Form.Item
         name="ethnicity"
         label="Ethnicity"
         tooltip="What is your ethnicity?"
         rules={[{ required: true, message: 'Please input your ethnicity!', whitespace: true }]}
       >
         <Input placeholder='ethnicity' />
-    </Form.Item>
+      </Form.Item>
 
-    <Form.Item
+      <Form.Item
         name="gender"
         label="Gender"
         rules={[{ required: true, message: 'Please select gender!' }]}
@@ -100,8 +100,8 @@ const PatientForm: React.FC = () => {
         <Input placeholder='jondoe@email.com' />
       </Form.Item>
 
-    <Form.Item 
-      label="Address"
+      <Form.Item
+        label="Address"
       >
         <Input.Group compact>
           <Form.Item
@@ -134,10 +134,10 @@ const PatientForm: React.FC = () => {
             <Input style={{ width: '25%' }} placeholder="Input street" />
           </Form.Item>
         </Input.Group>
-    </Form.Item>
+      </Form.Item>
 
-    <Form.Item 
-      label="Payment Information"
+      <Form.Item
+        label="Payment Information"
       >
         <Input.Group compact>
           <Form.Item
@@ -146,7 +146,7 @@ const PatientForm: React.FC = () => {
             rules={[{ required: true, message: 'Insurence id is required' }]}
           >
             <Input style={{ width: '33%' }} placeholder="Insurence ID" />
-            
+
           </Form.Item>
           <Form.Item
             name={['payment', 'memberId']}
@@ -163,9 +163,9 @@ const PatientForm: React.FC = () => {
             <Input style={{ width: '34%' }} placeholder="Insurence provider." />
           </Form.Item>
         </Input.Group>
-    </Form.Item>
+      </Form.Item>
 
-    <Form.Item
+      <Form.Item
         name="document"
         label="Document"
         tooltip="Identification document"
@@ -174,7 +174,7 @@ const PatientForm: React.FC = () => {
         <Upload {...props} listType='picture' maxCount={1} accept='.jpeg, .jpg, .png'>
           <Button icon={<UploadOutlined />}>Click to Upload</Button>
         </Upload>
-    </Form.Item>
+      </Form.Item>
 
       <Form.Item
         name="agreement"
