@@ -1,5 +1,4 @@
-import { Button, Form, Typography } from "antd";
-import { useEffect } from "react";
+import { Button, Form, Typography, Checkbox } from "antd";
 import { useDispatch } from "react-redux";
 
 import PatientForm from "./forms/PatientForm";
@@ -22,7 +21,7 @@ const ClientRegisterForm: React.FC = () => {
       firstName: values.firstName,
       lastname: values.lastname,
       email: values.email,
-      DOB: values.DOB.format("YYYY-MM-DD").toString(),
+      date_of_birth: values.date_of_birth.format("YYYY-MM-DD").toString(),
       gender: values.gender,
       ethnicity: values.ethnicity,
       address: {
@@ -33,11 +32,10 @@ const ClientRegisterForm: React.FC = () => {
       payment: {
         insurenceId: values.payment.insurenceId,
         memberId: values.payment.memberId,
-        insurenceProvider: values.payment.InsurenceProvider,
+        insurenceProvider: values.payment.insurenceProvider,
       },
       document: values.document,
     };
-
     dispatch(setVasUserData(patientData));
     navigate("/confirm-registration");
   };
@@ -56,7 +54,7 @@ const ClientRegisterForm: React.FC = () => {
           firstName: patientData.firstName,
           lastname: patientData.lastname,
           email: patientData.email,
-          DOB: stringToDate(patientData.DOB),
+          date_of_birth: stringToDate(patientData.date_of_birth),
           gender: patientData.gender,
           ethnicity: patientData.ethnicity,
           address: {
@@ -74,6 +72,23 @@ const ClientRegisterForm: React.FC = () => {
         scrollToFirstError
       >
         <PatientForm />
+        <Form.Item
+          name="agreement"
+          valuePropName="checked"
+          rules={[
+            {
+              validator: (_, value) =>
+                value
+                  ? Promise.resolve()
+                  : Promise.reject(new Error("Should accept agreement")),
+            },
+          ]}
+          {...tailFormItemLayout}
+        >
+          <Checkbox>
+            I have read the <a href="">agreement</a>
+          </Checkbox>
+        </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button className="primaryBtn" type="primary" htmlType="submit">
             Next

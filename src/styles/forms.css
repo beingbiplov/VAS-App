@@ -49,3 +49,8 @@
 .confirmBtn{
     margin: 25px auto;
 }
+
+.deleteBtn, .deleteBtn:hover {
+    border-color: red;
+    color: red;
+}
